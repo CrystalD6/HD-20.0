@@ -1,0 +1,9 @@
+{
+  "item.hardend_diamond.grimoire":                "Grimoire of Powers",
+  "item.hardend_diamond.hardend_diamond":          "Hardend Diamond",
+  "item.hardend_diamond.hardend_netherite_ingot":  "Hardend Netherite Ingot",
+  "item.hardend_diamond.hardend_upgrade_template": "Hardend Upgrade Template",
+  "item.hardend_diamond.hardend_diamond_ore":      "Hardend Diamond Ore",
+  "block.hardend_diamond.hardend_diamond_ore":     "Hardend Diamond Ore",
+  "itemGroup.hardend_diamond.main":                "Hardend Diamond Set"
+}

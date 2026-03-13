@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DTD",
+    "DDD"
+  ],
+  "key": {
+    "D": { "item": "hardend_diamond:hardend_diamond" },
+    "T": { "tag": "minecraft:smithing_templates" }
+  },
+  "result": {
+    "id": "hardend_diamond:hardend_upgrade_template",
+    "count": 1
+  }
+}

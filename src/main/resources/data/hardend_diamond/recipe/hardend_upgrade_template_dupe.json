@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "NTN",
+    "EEE"
+  ],
+  "key": {
+    "D": { "item": "minecraft:dirt" },
+    "N": { "item": "minecraft:netherrack" },
+    "T": { "item": "hardend_diamond:hardend_upgrade_template" },
+    "E": { "item": "minecraft:end_stone" }
+  },
+  "result": {
+    "id": "hardend_diamond:hardend_upgrade_template",
+    "count": 2
+  }
+}

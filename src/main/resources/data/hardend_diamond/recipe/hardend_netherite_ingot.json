@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "key": {
+    "S": { "item": "minecraft:netherite_scrap" },
+    "D": { "item": "hardend_diamond:hardend_diamond" }
+  },
+  "result": {
+    "id": "hardend_diamond:hardend_netherite_ingot",
+    "count": 1
+  }
+}

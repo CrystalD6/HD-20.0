@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "hardend_diamond",
+  "version": "${version}",
+  "name": "Hardend Diamond Set",
+  "description": "Epic powers voor het Hardend Diamond set.",
+  "authors": ["HardendDev"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.hardend.diamond.HardendDiamondMod"],
+    "client": ["com.hardend.diamond.HardendDiamondClient"]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.18.2",
+    "fabric-api": "*",
+    "minecraft": "1.21.11"
+  }
+}
