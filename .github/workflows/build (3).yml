@@ -27,6 +27,9 @@ jobs:
       - name: Build
         run: gradle build --no-daemon 2>&1
 
+      - name: Find JARs
+        run: find . -name "*.jar" | head -20
+
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
