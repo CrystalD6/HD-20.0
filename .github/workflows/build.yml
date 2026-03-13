@@ -1,13 +1,15 @@
-name: Build Mod JAR
+name: Build
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -20,14 +22,13 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '9.4.0'
+          gradle-version: '8.8'
 
       - name: Build
-        run: gradle build --info --no-daemon 2>&1
+        run: gradle build --no-daemon 2>&1
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: hardend-diamond-set
-          path: build/libs/*.jar
-          if-no-files-found: error
+          path: build/libs/*[^-sources].jar
