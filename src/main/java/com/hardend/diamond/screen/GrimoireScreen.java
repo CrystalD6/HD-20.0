@@ -2,13 +2,13 @@ package com.hardend.diamond.screen;
 
 import com.hardend.diamond.data.PowerData;
 import com.hardend.diamond.data.PowerData.PowerEntry;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.text.Style;
-import net.minecraft.text.OrderedText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
 
@@ -31,13 +31,13 @@ public class GrimoireScreen extends Screen {
     private static final int C_DESC     = 0xFFCCCCCC;
     private static final int C_DIM      = 0xFF666688;
 
-    private TextFieldWidget searchField;
+    private EditBox searchField;
     private List<PowerEntry> results;
     private int selectedIdx = 0;
     private int scroll = 0;
 
     public GrimoireScreen() {
-        super(Text.literal("Grimoire of Powers"));
+        super(Component.literal("Grimoire of Powers"));
         results = PowerData.getAll();
     }
 
@@ -46,19 +46,19 @@ public class GrimoireScreen extends Screen {
         int x = (width - W) / 2;
         int y = (height - H) / 2;
 
-        searchField = new TextFieldWidget(textRenderer, x + PAD, y + PAD + 14, W / 2 - PAD * 2, 14,
-                Text.literal("Zoeken…"));
+        searchField = new EditBox(font, x + PAD, y + PAD + 14, W / 2 - PAD * 2, 14,
+                Component.literal("Zoeken…"));
         searchField.setMaxLength(64);
-        searchField.setPlaceholder(Text.literal("Typ power, item of type…").formatted(Formatting.DARK_GRAY));
-        searchField.setChangedListener(q -> { results = PowerData.search(q); selectedIdx = 0; scroll = 0; });
+        searchField.setHint(Component.literal("Typ power, item of type…").withStyle(ChatFormatting.DARK_GRAY));
+        searchField.setResponder(q -> { results = PowerData.search(q); selectedIdx = 0; scroll = 0; });
         searchField.setFocused(true);
-        addDrawableChild(searchField);
+        addRenderableWidget(searchField);
         setInitialFocus(searchField);
     }
 
     @Override
     public boolean keyPressed(int key, int scan, int mods) {
-        if (key == 256) { close(); return true; }
+        if (key == 256) { onClose(); return true; }
         if (key == 264 && selectedIdx < results.size() - 1) {
             selectedIdx++;
             if (selectedIdx >= scroll + MAX_ROWS) scroll++;
@@ -93,7 +93,7 @@ public class GrimoireScreen extends Screen {
     }
 
     @Override
-    public void render(DrawContext ctx, int mx, int my, float delta) {
+    public void render(GuiGraphics ctx, int mx, int my, float delta) {
         renderBackground(ctx, mx, my, delta);
 
         int x = (width - W) / 2;
@@ -106,15 +106,15 @@ public class GrimoireScreen extends Screen {
         ctx.fill(x + W-1, y,       x + W,     y + H,     C_BORDER);
 
         String title = "✦ Grimoire of Powers ✦";
-        ctx.drawTextWithShadow(textRenderer, Text.literal(title),
-                x + (W - textRenderer.getWidth(title)) / 2, y + PAD, C_TITLE);
+        ctx.drawString(font, Component.literal(title),
+                x + (W - font.width(title)) / 2, y + PAD, C_TITLE);
 
         super.render(ctx, mx, my, delta);
 
         int listY = y + PAD + 14 + 16;
         int listX2 = x + W / 2 - PAD;
 
-        ctx.drawTextWithShadow(textRenderer, Text.literal(results.size() + " powers"),
+        ctx.drawString(font, Component.literal(results.size() + " powers"),
                 x + PAD, listY - 9, C_DIM);
 
         int visible = Math.min(MAX_ROWS, results.size() - scroll);
@@ -125,16 +125,16 @@ public class GrimoireScreen extends Screen {
             boolean sel = idx == selectedIdx;
             if (sel) ctx.fill(x + PAD - 1, ry - 1, listX2 + 1, ry + ROW_H - 2, C_SEL);
             int col = sel ? 0xFFFFFFFF : typeColor(e.type());
-            ctx.drawTextWithShadow(textRenderer, Text.literal(icon(e.type()) + e.name()), x + PAD, ry, col);
+            ctx.drawString(font, Component.literal(icon(e.type()) + e.name()), x + PAD, ry, col);
             if (!sel) {
                 String cat = e.category();
-                ctx.drawTextWithShadow(textRenderer, Text.literal(cat),
-                        listX2 - textRenderer.getWidth(cat), ry, C_DIM);
+                ctx.drawString(font, Component.literal(cat),
+                        listX2 - font.width(cat), ry, C_DIM);
             }
         }
 
         if (results.size() > MAX_ROWS) {
-            ctx.drawTextWithShadow(textRenderer, Text.literal("▲▼ scroll"),
+            ctx.drawString(font, Component.literal("▲▼ scroll"),
                     x + PAD, listY + MAX_ROWS * ROW_H + 2, C_DIM);
         }
 
@@ -148,35 +148,34 @@ public class GrimoireScreen extends Screen {
         if (!results.isEmpty() && selectedIdx < results.size()) {
             PowerEntry e = results.get(selectedIdx);
 
-            ctx.drawTextWithShadow(textRenderer, Text.literal(e.name()), dX, dY, typeColor(e.type()));
+            ctx.drawString(font, Component.literal(e.name()), dX, dY, typeColor(e.type()));
             dY += 11;
 
-            ctx.drawTextWithShadow(textRenderer,
-                    Text.literal(e.item() + "  ·  " + e.category()), dX, dY, 0xFF8899CC);
+            ctx.drawString(font,
+                    Component.literal(e.item() + "  ·  " + e.category()), dX, dY, 0xFF8899CC);
             dY += 10;
 
-            ctx.drawTextWithShadow(textRenderer,
-                    Text.literal("[" + e.type().toUpperCase() + "]"), dX, dY, typeColor(e.type()));
+            ctx.drawString(font,
+                    Component.literal("[" + e.type().toUpperCase() + "]"), dX, dY, typeColor(e.type()));
             dY += 12;
 
             ctx.fill(dX - 1, dY - 1, dX + dW + 1, dY + 12, 0xFF0A1030);
-            ctx.drawTextWithShadow(textRenderer, Text.literal("⌨ " + e.bind()), dX + 2, dY + 1, C_BIND);
+            ctx.drawString(font, Component.literal("⌨ " + e.bind()), dX + 2, dY + 1, C_BIND);
             dY += 15;
 
             ctx.fill(dX, dY, dX + dW, dY + 1, 0xFF1A2A55);
             dY += 4;
 
-            // Fixed: use Style.EMPTY.withColor() instead of lambda
-            List<OrderedText> lines = textRenderer.wrapLines(
-                    Text.literal(e.description()).setStyle(Style.EMPTY.withColor(C_DESC)), dW);
-            for (OrderedText line : lines) {
+            List<FormattedCharSequence> lines = font.split(
+                    Component.literal(e.description()).setStyle(Style.EMPTY.withColor(C_DESC)), dW);
+            for (FormattedCharSequence line : lines) {
                 if (dY + 9 > y + H - PAD) break;
-                ctx.drawTextWithShadow(textRenderer, line, dX, dY, 0xFFFFFFFF);
+                ctx.drawString(font, line, dX, dY, 0xFFFFFFFF);
                 dY += 10;
             }
         } else {
-            ctx.drawTextWithShadow(textRenderer,
-                    Text.literal("Geen resultaten.").formatted(Formatting.DARK_GRAY),
+            ctx.drawString(font,
+                    Component.literal("Geen resultaten.").withStyle(ChatFormatting.DARK_GRAY),
                     dX, dY + 30, C_DIM);
         }
     }
@@ -199,6 +198,5 @@ public class GrimoireScreen extends Screen {
         };
     }
 
-    @Override public boolean shouldPause() { return false; }
-    @Override public boolean shouldCloseOnEsc() { return true; }
+    @Override public boolean isPauseScreen() { return false; }
 }
