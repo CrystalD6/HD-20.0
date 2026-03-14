@@ -1,6 +1,1 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "hardend_diamond:item/hardend_chestplate"
-  }
-}
+{"parent":"minecraft:item/generated","textures":{"layer0":"hardend_diamond:item/hardend_chestplate"}}

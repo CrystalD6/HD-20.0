@@ -1,9 +1,17 @@
 {
-  "item.hardend_diamond.grimoire":                "Grimoire of Powers",
-  "item.hardend_diamond.hardend_diamond":          "Hardend Diamond",
-  "item.hardend_diamond.hardend_netherite_ingot":  "Hardend Netherite Ingot",
+  "item.hardend_diamond.grimoire": "✦ Grimoire of Powers ✦",
+  "item.hardend_diamond.hardend_diamond": "Hardend Diamond",
+  "item.hardend_diamond.hardend_netherite_ingot": "Hardend Netherite Ingot",
   "item.hardend_diamond.hardend_upgrade_template": "Hardend Upgrade Template",
-  "item.hardend_diamond.hardend_diamond_ore":      "Hardend Diamond Ore",
-  "block.hardend_diamond.hardend_diamond_ore":     "Hardend Diamond Ore",
-  "itemGroup.hardend_diamond.main":                "Hardend Diamond Set"
+  "block.hardend_diamond.hardend_diamond_ore": "Hardend Diamond Ore",
+  "item.hardend_diamond.hardend_sword": "Hardend Sword",
+  "item.hardend_diamond.hardend_pickaxe": "Hardend Pickaxe",
+  "item.hardend_diamond.hardend_axe": "Hardend Axe",
+  "item.hardend_diamond.hardend_shovel": "Hardend Shovel",
+  "item.hardend_diamond.hardend_hoe": "Hardend Hoe",
+  "item.hardend_diamond.hardend_helmet": "Hardend Helmet",
+  "item.hardend_diamond.hardend_chestplate": "Hardend Chestplate",
+  "item.hardend_diamond.hardend_leggings": "Hardend Leggings",
+  "item.hardend_diamond.hardend_boots": "Hardend Boots",
+  "itemGroup.hardend_diamond.main": "Hardend Diamond Set"
 }

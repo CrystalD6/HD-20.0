@@ -32,7 +32,7 @@ public class GrimoireItem extends Item {
 
     public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.literal("Rechtsklik om te openen").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Zoek alle powers van het Hardend Diamond Set").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
+        tooltip.add(Text.literal("Zoek alle 62 powers").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
     }
 
     @Override

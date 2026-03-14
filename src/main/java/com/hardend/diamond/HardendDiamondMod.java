@@ -44,6 +44,15 @@ public class HardendDiamondMod implements ModInitializer {
                             e.add(ModItems.HARDEND_DIAMOND_ORE);
                             e.add(ModItems.HARDEND_NETHERITE_INGOT);
                             e.add(ModItems.HARDEND_UPGRADE_TEMPLATE);
+                            e.add(ModItems.HARDEND_SWORD);
+                            e.add(ModItems.HARDEND_PICKAXE);
+                            e.add(ModItems.HARDEND_AXE);
+                            e.add(ModItems.HARDEND_SHOVEL);
+                            e.add(ModItems.HARDEND_HOE);
+                            e.add(ModItems.HARDEND_HELMET);
+                            e.add(ModItems.HARDEND_CHESTPLATE);
+                            e.add(ModItems.HARDEND_LEGGINGS);
+                            e.add(ModItems.HARDEND_BOOTS);
                         })
                         .build()
         );
