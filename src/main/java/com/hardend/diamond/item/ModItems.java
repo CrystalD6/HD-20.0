@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -15,30 +17,36 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class ModItems {
-    public static final GrimoireItem GRIMOIRE = new GrimoireItem(new Item.Settings().maxCount(1));
+    public static final GrimoireItem GRIMOIRE = new GrimoireItem(
+            new Item.Settings().maxCount(1).registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, "grimoire"))));
 
-    public static final Item HARDEND_DIAMOND = new Item(new Item.Settings()) {
+    public static final Item HARDEND_DIAMOND = new Item(
+            new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, "hardend_diamond")))) {
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Gevonden als erts in The End").formatted(Formatting.AQUA, Formatting.ITALIC));
             tooltip.add(Text.literal("Craft: omring met 8x Netherite Scrap").formatted(Formatting.DARK_GRAY));
         }
     };
 
-    public static final Item HARDEND_NETHERITE_INGOT = new Item(new Item.Settings()) {
+    public static final Item HARDEND_NETHERITE_INGOT = new Item(
+            new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, "hardend_netherite_ingot")))) {
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Werkt zoals een Netherite Ingot").formatted(Formatting.LIGHT_PURPLE, Formatting.ITALIC));
             tooltip.add(Text.literal("Gebruik in smithing table + Hardend Upgrade Template").formatted(Formatting.DARK_GRAY));
         }
     };
 
-    public static final Item HARDEND_UPGRADE_TEMPLATE = new Item(new Item.Settings()) {
+    public static final Item HARDEND_UPGRADE_TEMPLATE = new Item(
+            new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, "hardend_upgrade_template")))) {
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Smithing Table: diamond gear → netherite").formatted(Formatting.GOLD, Formatting.ITALIC));
             tooltip.add(Text.literal("Dupen: dirt + netherrack + endstone + template").formatted(Formatting.DARK_GRAY));
         }
     };
 
-    public static final BlockItem HARDEND_DIAMOND_ORE = new BlockItem(ModBlocks.HARDEND_DIAMOND_ORE, new Item.Settings());
+    public static final BlockItem HARDEND_DIAMOND_ORE = new BlockItem(
+            ModBlocks.HARDEND_DIAMOND_ORE,
+            new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, "hardend_diamond_ore"))));
 
     public static void register() {
         reg("grimoire",                 GRIMOIRE);
