@@ -11,8 +11,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +25,7 @@ public class HardendDiamondMod implements ModInitializer {
 
     public static final ResourceKey<CreativeModeTab> GROUP_KEY = ResourceKey.create(
             net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,
-            ResourceLocation.fromNamespaceAndPath(MOD_ID, "main")
+            Identifier.of(MOD_ID, "main")
     );
 
     @Override

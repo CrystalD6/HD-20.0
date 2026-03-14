@@ -3,7 +3,7 @@ package com.hardend.diamond.block;
 import com.hardend.diamond.HardendDiamondMod;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
@@ -21,7 +21,7 @@ public class ModBlocks {
 
     public static void register() {
         Registry.register(BuiltInRegistries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(HardendDiamondMod.MOD_ID, "hardend_diamond_ore"),
+                Identifier.of(HardendDiamondMod.MOD_ID, "hardend_diamond_ore"),
                 HARDEND_DIAMOND_ORE);
     }
 }

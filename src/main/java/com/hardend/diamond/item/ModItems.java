@@ -6,7 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -37,8 +37,7 @@ public class ModItems {
         @Override
         public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltip, TooltipFlag type) {
             tooltip.add(Component.literal("Smithing Table: diamond gear → netherite").withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC));
-            tooltip.add(Component.literal("Dupen: dirt (boven) + netherrack (zijkanten) +").withStyle(ChatFormatting.DARK_GRAY));
-            tooltip.add(Component.literal("  endstone (onder) + template (midden)").withStyle(ChatFormatting.DARK_GRAY));
+            tooltip.add(Component.literal("Dupen: dirt + netherrack + endstone + template").withStyle(ChatFormatting.DARK_GRAY));
         }
     };
 
@@ -53,6 +52,6 @@ public class ModItems {
     }
 
     private static void reg(String name, Item item) {
-        Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(HardendDiamondMod.MOD_ID, name), item);
+        Registry.register(BuiltInRegistries.ITEM, Identifier.of(HardendDiamondMod.MOD_ID, name), item);
     }
 }

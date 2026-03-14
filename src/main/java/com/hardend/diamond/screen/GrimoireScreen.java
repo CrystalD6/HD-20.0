@@ -40,14 +40,6 @@ public class GrimoireScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(int key, int scan, int mods) {
-        if (key==256) { onClose(); return true; }
-        if (key==264 && selectedIdx<results.size()-1) { selectedIdx++; if(selectedIdx>=scroll+MAX_ROWS) scroll++; return true; }
-        if (key==265 && selectedIdx>0) { selectedIdx--; if(selectedIdx<scroll) scroll--; return true; }
-        return super.keyPressed(key, scan, mods);
-    }
-
-    @Override
     public boolean mouseScrolled(double mx, double my, double hAmt, double vAmt) {
         if (vAmt<0 && scroll<results.size()-MAX_ROWS) scroll++;
         else if (vAmt>0 && scroll>0) scroll--;

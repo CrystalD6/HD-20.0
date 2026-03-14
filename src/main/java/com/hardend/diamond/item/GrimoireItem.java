@@ -7,7 +7,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,9 +20,15 @@ public class GrimoireItem extends Item {
     public GrimoireItem(Properties properties) { super(properties); }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public ItemInteractionResult useOn(net.minecraft.world.item.context.UseOnContext ctx) {
+        if (ctx.getLevel().isClientSide()) openGrimoire();
+        return ItemInteractionResult.SUCCESS;
+    }
+
+    @Override
+    public net.minecraft.world.InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (level.isClientSide()) openGrimoire();
-        return InteractionResultHolder.success(player.getItemInHand(hand));
+        return net.minecraft.world.InteractionResult.SUCCESS;
     }
 
     @Environment(EnvType.CLIENT)
