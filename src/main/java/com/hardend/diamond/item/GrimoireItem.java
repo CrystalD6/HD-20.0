@@ -30,7 +30,6 @@ public class GrimoireItem extends Item {
         MinecraftClient.getInstance().setScreen(new GrimoireScreen());
     }
 
-    @Override
     public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.literal("Rechtsklik om te openen").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Zoek alle powers van het Hardend Diamond Set").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
