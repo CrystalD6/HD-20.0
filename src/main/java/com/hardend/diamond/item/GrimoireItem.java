@@ -3,47 +3,41 @@ package com.hardend.diamond.item;
 import com.hardend.diamond.screen.GrimoireScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
 
 import java.util.List;
 
 public class GrimoireItem extends Item {
-    public GrimoireItem(Properties properties) { super(properties); }
+    public GrimoireItem(Settings settings) { super(settings); }
 
     @Override
-    public ItemInteractionResult useOn(net.minecraft.world.item.context.UseOnContext ctx) {
-        if (ctx.getLevel().isClientSide()) openGrimoire();
-        return ItemInteractionResult.SUCCESS;
-    }
-
-    @Override
-    public net.minecraft.world.InteractionResult use(Level level, Player player, InteractionHand hand) {
-        if (level.isClientSide()) openGrimoire();
-        return net.minecraft.world.InteractionResult.SUCCESS;
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient()) openGrimoire();
+        return TypedActionResult.success(user.getStackInHand(hand));
     }
 
     @Environment(EnvType.CLIENT)
     private void openGrimoire() {
-        Minecraft.getInstance().setScreen(new GrimoireScreen());
+        MinecraftClient.getInstance().setScreen(new GrimoireScreen());
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(Component.literal("Rechtsklik om te openen").withStyle(ChatFormatting.AQUA));
-        tooltip.add(Component.literal("Zoek alle powers van het Hardend Diamond Set").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+    public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
+        tooltip.add(Text.literal("Rechtsklik om te openen").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Zoek alle powers van het Hardend Diamond Set").formatted(Formatting.DARK_GRAY, Formatting.ITALIC));
     }
 
     @Override
-    public Component getName(ItemStack stack) {
-        return Component.literal("✦ Grimoire of Powers ✦");
+    public Text getName(ItemStack stack) {
+        return Text.literal("✦ Grimoire of Powers ✦");
     }
 }

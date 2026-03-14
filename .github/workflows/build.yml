@@ -28,11 +28,11 @@ jobs:
         run: gradle build --no-daemon 2>&1
 
       - name: Find JARs
-        run: find . -name "*.jar" | head -20
+        run: find . -name "*.jar" | grep -v cache | grep -v gradle | grep -v jdk
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: hardend-diamond-set
-          path: build/libs/*.jar
+          path: "**/*.jar"
           if-no-files-found: warn
