@@ -18,7 +18,6 @@ public class ModItems {
     public static final GrimoireItem GRIMOIRE = new GrimoireItem(new Item.Settings().maxCount(1));
 
     public static final Item HARDEND_DIAMOND = new Item(new Item.Settings()) {
-        @Override
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Gevonden als erts in The End").formatted(Formatting.AQUA, Formatting.ITALIC));
             tooltip.add(Text.literal("Craft: omring met 8x Netherite Scrap").formatted(Formatting.DARK_GRAY));
@@ -26,7 +25,6 @@ public class ModItems {
     };
 
     public static final Item HARDEND_NETHERITE_INGOT = new Item(new Item.Settings()) {
-        @Override
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Werkt zoals een Netherite Ingot").formatted(Formatting.LIGHT_PURPLE, Formatting.ITALIC));
             tooltip.add(Text.literal("Gebruik in smithing table + Hardend Upgrade Template").formatted(Formatting.DARK_GRAY));
@@ -34,7 +32,6 @@ public class ModItems {
     };
 
     public static final Item HARDEND_UPGRADE_TEMPLATE = new Item(new Item.Settings()) {
-        @Override
         public void appendTooltip(ItemStack stack, TooltipContext ctx, List<Text> tooltip, TooltipType type) {
             tooltip.add(Text.literal("Smithing Table: diamond gear → netherite").formatted(Formatting.GOLD, Formatting.ITALIC));
             tooltip.add(Text.literal("Dupen: dirt + netherrack + endstone + template").formatted(Formatting.DARK_GRAY));
